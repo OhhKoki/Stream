@@ -5,14 +5,14 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * File类常用方法
+ * File 常用方法
  */
 @SuppressWarnings("all")
 public class FileMethod {
 
     /**
      * File(String pathname)
-     * 声明文件：根据 "绝对路径" 声明
+     * 创建文件：根据 "绝对路径" 创建
      */
     @Test
     public void test01() {
@@ -28,8 +28,7 @@ public class FileMethod {
     }
 
     /**
-     * File(String parent, String child)
-     * 声明文件：根据 "目录 + 文件名" 声明
+     * 创建文件：根据 "目录 + 文件名" 创建
      */
     @Test
     public void test02() {
