@@ -17,7 +17,6 @@ public class FileMethod {
     @Test
     public void test01() {
         String fileName = "/Users/terry/Documents/test.txt";
-        // 声明文件
         File file = new File(fileName);
         try {
             // 创建文件
@@ -35,7 +34,6 @@ public class FileMethod {
         // 需要事先创建目录，否则报错：No such file or directory
         String directoryName = "/Users/terry/Documents/TestIO";
         String fileName = "test.txt";
-        // 声明文件
         File file = new File(directoryName, fileName);
         try {
             // 创建文件
