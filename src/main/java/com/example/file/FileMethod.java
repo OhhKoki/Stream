@@ -11,7 +11,6 @@ import java.io.IOException;
 public class FileMethod {
 
     /**
-     * File(String pathname)
      * 创建文件：根据 "绝对路径" 创建
      */
     @Test
