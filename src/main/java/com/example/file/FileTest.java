@@ -204,9 +204,11 @@ public class FileTest {
      *
      *      1）boolean mkdir(): 创建一个 File 对象所对应的目录，如果创建成功，则返回 true，否则返回 false。调用该方法时，如果 File 对象对应一个文件名，则会将该文件名当作目录名，用于创建目录
      *
-     *      2）String[] list(): 列出 File 对象的所有子文件名和目录名，返回 String 数组
+     *      2）boolean mkdirs()：创建多个 File 对象所对应的目录，如果创建成功，则返回 true，否则返回 false。调用该方法时，如果 File 对象对应一个文件名，则会将该文件名当作目录名，用于创建目录
      *
-     *      3）File[] listFiles(): 列出 File 对象的所有子文件和目录名，返回 File 数组
+     *      3）String[] list(): 列出 File 对象的所有子文件名和目录名，返回 String 数组
+     *
+     *      4）File[] listFiles(): 列出 File 对象的所有子文件和目录名，返回 File 数组
      *
      */
     @Test
@@ -218,14 +220,20 @@ public class FileTest {
         // false（目录已存在，且存在其他文件）
         System.out.println(directory.mkdir());
 
-        // -------------------- 2）String[] list(): 列出 File 对象的所有子文件名和目录名，返回 String 数组 --------------------
+        // -------------------- 2）boolean mkdirs()：创建多个 File 对象所对应的目录，如果创建成功，则返回 true，否则返回 false。调用该方法时，如果 File 对象对应一个文件名，则会将该文件名当作目录名，用于创建目录 --------------------
+        // true（file 指向一个文件，不是目录，且该文件不存在。此时调用方法，则会在 /Users/terry/Documents 目录下创建一个名为 "test.txt" 的子目录）
+        System.out.println(file.mkdirs());
+        // false（目录已存在，且存在其他文件）
+        System.out.println(directory.mkdirs());
+
+        // -------------------- 3）String[] list(): 列出 File 对象的所有子文件名和目录名，返回 String 数组 --------------------
         String[] directoryNameList = directory.list();
         // 列出 /Users/terry/Documents 下 所有 File（文件 & 目录）的名称，例如：IdeaProject、apache-maven-3.8.4
         for (String directoryName : directoryNameList) {
             System.out.println(directoryName);
         }
 
-        // -------------------- 3）File[] listFiles(): 列出 File 对象的所有子文件和目录名，返回 File 数组 --------------------
+        // -------------------- 4）File[] listFiles(): 列出 File 对象的所有子文件和目录名，返回 File 数组 --------------------
         File[] directoryList = directory.listFiles();
         // 列出所有 File（文件 & 目录），例如：/Users/terry/Documents/IdeaProject、/Users/terry/Documents/apache-maven-3.8.4
         for (File directory : directoryList) {
