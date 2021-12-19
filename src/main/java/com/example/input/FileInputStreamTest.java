@@ -1,66 +1,64 @@
 package com.example.input;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import java.io.*;
 
-/**
- * @author terry
- */
 @SuppressWarnings("all")
 public class FileInputStreamTest {
 
-    /**
-     * int read()：从输入流中读取单个字节
-     */
-    @Test
-    public void test01() {
-        File file = new File("/Users/terry/Documents/test.txt");
-        InputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(file);
-            int data = 0;
-            // int read()：从输入流中读取单个字节，如果读取到结尾（没有数据可读了），则返回 -1
-            while ((data = inputStream.read()) != -1) {
-                System.out.print((char)data);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private InputStream inputStream;
 
+    /**
+     * 构造方法
+     */
+    @Before
+    public void test01() throws IOException {
+        inputStream = new FileInputStream("/Users/terry/Documents/test.txt");
     }
 
     /**
-     * int read(byte b[])：从输入流中读取多个字节
+     * 关闭资源
+     */
+    @After
+    public void test02() throws IOException {
+        inputStream.close();
+    }
+
+    /**
+     * int read()：从输入流中读取单个字节，返回所读取的字节数据
      */
     @Test
-    public void test02() {
-        File file = new File("/Users/terry/Documents/test.txt");
-        InputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(file);
-            // 一次读取八个字节
-            byte[] buf = new byte[8];
-            int length = 0;
-            // int read(byte b[])：从输入流中读取 b.length 个字节到 b 数组中，并返回，并返回实际读取到的字节数，如果读取到结尾了（没有数据可读了），则返回 -1
-            while ((length = inputStream.read(buf)) != -1) {
-                System.out.print(new String(buf, 0, length));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void test03() throws IOException {
+        int data = -1;
+        while ((data = inputStream.read()) != -1) {
+            System.out.print((char)data);
         }
+    }
 
+    /**
+     * int read(byte[] b)：从输入流中最多读取 b.length 个字节的数据，并将其存储在字节数组 b 中，返回实际读取的字节个数，为空时返回 -1
+     */
+    @Test
+    public void test04() throws IOException {
+        int length = -1;
+        byte[] data = new byte[8];
+        while ((length = inputStream.read(data)) != -1) {
+            System.out.print(new String(data));
+        }
+    }
+
+    /**
+     * int read(byte[] b, int off, int len) throws IOException：从输入流中最多读取 len 个 字节的数据，并将其存储在数组 b 中，将数据放入数组 b 中时，并不一定是从数组零索引处开始，而是从索引为 off 位置处开始，返回实际读取的字节数
+     */
+    @Test
+    public void test05() throws IOException {
+        int length = -1;
+        byte[] data = new byte[8];
+        while ((length = inputStream.read(data, 1, 5)) != -1) {
+            System.out.print(new String(data, 1, length));
+        }
     }
 
 }
