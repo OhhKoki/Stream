@@ -35,6 +35,8 @@ public class FileInputStreamTest {
         while ((data = inputStream.read()) != -1) {
             System.out.print((char)data);
         }
+
+
     }
 
     /**
